@@ -111,12 +111,23 @@ app.get("/api/health", (req, res) =>
   res.json({ ok: true, env: process.env.NODE_ENV || "development" })
 );
 
+// Frontend entry
+app.get("/", (req, res) => {
+  res.sendFile(path.join(publicPath, "index.html"));
+});
+
+// Frontend fallback (non-API routes)
 app.get("*", (req, res, next) => {
   if (req.path.startsWith("/api/")) return next();
-  res.sendFile(path.join(publicPath, "index.html"), (err) => {
-    if (err) next(err);
-  });
+
+  const filePath = path.join(publicPath, req.path);
+  if (fs.existsSync(filePath)) {
+    return res.sendFile(filePath);
+  }
+
+  res.sendFile(path.join(publicPath, "index.html"));
 });
+
 
 app.use((err, req, res, next) => {
   console.error("Server error:", err?.stack || err);
