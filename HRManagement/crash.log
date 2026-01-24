@@ -1,0 +1,51 @@
+--------- beginning of main
+12-10 05:07:08.349  1369  1838 I BistoHotwordHelper: (REDACTED) getHotwordActive::active query: %s, watch: %s, devices connected: %s
+12-10 05:07:10.536   546   759 D androidtc: Initializing SystemTextClassifier, type = System
+12-10 05:07:10.542  1350  1350 I AiAiTextClassifier: onCreateTextClassificationSession = TextClassificationSessionId {3c808173-0a90-46d7-8f90-297fcd336500}
+12-10 05:07:10.555   784   784 I ClipboardListener: Clipboard overlay suppressed.
+12-10 05:07:10.558  1350  2037 I AiAiTextClassifier: GenerateLinks did not find valid links, returning empty result
+12-10 05:07:10.559   784   784 I ClipboardListener: Clipboard overlay suppressed.
+--------- beginning of system
+12-10 05:07:10.562   546   586 W BatteryExternalStatsWorker: error reading Bluetooth stats: 9
+12-10 05:07:10.565  1350  2037 I AiAiTextClassifier: GenerateLinks did not find valid links, returning empty result
+12-10 05:07:10.568  1350  1842 I AiAiTranslate: C2T - not in a conversation
+12-10 05:07:10.574   546  1054 D TelephonyManager: requestModemActivityInfo: Sending result to app: ModemActivityInfo{ mTimestamp=149420945 mSleepTimeMs=0 mIdleTimeMs=149420602 mActivityStatsTechSpecificInfo=[{mRat=UNKNOWN,mFrequencyRange=UNKNOWN,mTxTimeMs[]=[0, 0, 0, 0, 0],mRxTimeMs=0}]}
+12-10 05:07:10.594   331   383 I netd    : tetherGetStats() -> {[]} <1.22ms>
+12-10 05:07:10.653   772   772 I wpa_supplicant: wlan0: CTRL-EVENT-BEACON-LOSS 
+12-10 05:07:10.832   546   557 I system_server: Background concurrent mark compact GC freed 24MB AllocSpace bytes, 50(1288KB) LOS objects, 44% free, 29MB/53MB, paused 776us,4.204ms total 231.547ms
+12-10 05:07:10.833  1350  1350 I AiAiTextClassifier: onDestroyTextClassificationSession = TextClassificationSessionId {cd533b68-01e3-4eba-a519-a47c9293dbb3}
+12-10 05:07:10.857   546   558 I BpBinder: onLastStrongRef automatically unlinking death recipients: 
+12-10 05:07:10.859  1350  1350 I AiAiTextClassifier: onDestroyTextClassificationSession = TextClassificationSessionId {d80f7953-ab24-409e-b436-88f87caad7c2}
+12-10 05:07:10.861   546   559 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /product/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk' with 1 weak references
+12-10 05:07:10.862   546   559 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/LatinIMEGooglePrebuilt/LatinIMEGooglePrebuilt.apk' with 1 weak references
+12-10 05:07:10.863   546   559 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /system_ext/app/AccessibilityMenu/AccessibilityMenu.apk' with 1 weak references
+12-10 05:07:10.864   546   559 W system_server: ApkAssets: Deleting an ApkAssets object '/product/overlay/AccessibilityMenu__sdk_gphone64_arm64__auto_generated_rro_product.apk' with 1 weak references
+12-10 05:07:10.864   546   559 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/talkback/talkback.apk' with 1 weak references
+12-10 05:07:10.864   546   559 W system_server: ApkAssets: Deleting an ApkAssets object '/vendor/overlay/EmulatorTalkBackOverlay/EmulatorTalkBackOverlay.apk' with 1 weak references
+12-10 05:07:10.867   546   559 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/GoogleTTS/GoogleTTS.apk' with 1 weak references
+--------- beginning of kernel
+12-10 05:07:10.915   142   142 I logd    : logdr: UID=2000 GID=2000 PID=3325 b tail=0 logMask=99 pid=0 start=0ns deadline=0ns
+12-10 05:07:14.058  3014  3014 I AidlLazyServiceRegistrar: Process has 0 (of 1 available) client(s) in use after notification artd has clients: 0
+12-10 05:07:14.058  3014  3014 I AidlLazyServiceRegistrar: Trying to shut down the service. No clients in use for any service in process.
+12-10 05:07:14.057   130   130 I servicemanager: Notifying artd they don't (previously: do) have clients when we now have no record of a client
+12-10 05:07:14.060  3014  3014 I AidlLazyServiceRegistrar: Unregistered all clients and exiting
+12-10 05:07:14.060   130   130 I servicemanager: Caller(pid=3014,uid=1082,sid=u:r:artd:s0) Unregistering artd
+12-10 05:07:14.060   130   130 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+12-10 05:07:14.071     1     1 I init    : Service 'artd' (pid 3014) exited with status 0 oneshot service took 216.889008 seconds in background
+12-10 05:07:14.072     1     1 I init    : Sending signal 9 to service 'artd' (pid 3014) process group...
+12-10 05:07:14.072     1     1 I libprocessgroup: Removed cgroup /sys/fs/cgroup/uid_1082/pid_3014
+12-10 05:07:18.587   772   772 I wpa_supplicant: wlan0: CTRL-EVENT-BEACON-LOSS 
+12-10 05:07:20.489   142   142 I logd    : logdr: UID=2000 GID=2000 PID=3328 b tail=0 logMask=99 pid=0 start=0ns deadline=0ns
+12-10 05:07:23.238  1307  1928 I PhenotypeProcessReaper: Memory state is: 200
+12-10 05:07:23.272  1307  1307 I MDDTaskScheduler: MDDTaskScheduler$Worker.startWorkInner():122 work mdd_download_work started
+12-10 05:07:23.277   546  1054 D ConnectivityService: requestNetwork for uid/pid:10155/1307 activeRequest: null callbackRequest: 841 [NetworkRequest [ REQUEST id=842, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10155 RequestorUid: 10155 RequestorPkg: com.google.android.inputmethod.latin UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647 isUidTracked: false
+12-10 05:07:23.278   546   695 D ConnectivityService: NetReassign [842 : null → 107] [c 0] [a 1] [i 0]
+12-10 05:07:23.279   546   688 D OemPaidWifiNetworkFactory: got request NetworkRequest [ REQUEST id=842, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10155 RequestorUid: 10155 RequestorPkg: com.google.android.inputmethod.latin UnderlyingNetworks: Null] ]
+12-10 05:07:23.279   546   688 D MultiInternetWifiNetworkFactory: got request NetworkRequest [ REQUEST id=842, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10155 RequestorUid: 10155 RequestorPkg: com.google.android.inputmethod.latin UnderlyingNetworks: Null] ]
+12-10 05:07:23.280   546   688 D WifiNetworkFactory: got request NetworkRequest [ REQUEST id=842, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10155 RequestorUid: 10155 RequestorPkg: com.google.android.inputmethod.latin UnderlyingNetworks: Null] ]
+12-10 05:07:23.280   546   688 D UntrustedWifiNetworkFactory: got request NetworkRequest [ REQUEST id=842, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10155 RequestorUid: 10155 RequestorPkg: com.google.android.inputmethod.latin UnderlyingNetworks: Null] ]
+12-10 05:07:23.286  1307  1307 I MDDTaskScheduler: MDDTaskScheduler$Worker.startWorkInner():122 work mdd_download_work started
+12-10 05:07:23.287  1307  3321 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=8ef5c965-b4b1-4529-9484-68b9dec52c2e, tags={ com.google.android.libraries.inputmethod.mdd.MDDTaskScheduler$Worker } ]
+12-10 05:07:23.295  1307  3318 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=25d64d3f-d0f8-42fd-b168-c301449555c9, tags={ com.google.android.libraries.inputmethod.mdd.MDDTaskScheduler$Worker } ]
+12-10 05:07:26.523   772   772 I wpa_supplicant: wlan0: CTRL-EVENT-BEACON-LOSS 
+12-10 05:07:27.309   142   142 I logd    : logdr: UID=2000 GID=2000 PID=3333 b tail=0 logMask=99 pid=0 start=0ns deadline=0ns

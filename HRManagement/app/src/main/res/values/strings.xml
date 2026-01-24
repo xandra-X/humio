@@ -1,0 +1,10 @@
+<resources>
+    <string name="api_base_url">http://10.0.2.2:8080</string>
+    <string name="app_name">HUMIO</string>
+    <string name="sign_in_title">Sign in to your\nAccount</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="forgot_password">Forgot Your Password ?</string>
+    <string name="login_button">Log In</string>
+    <string name="app_logo_desc">App Logo</string>
+</resources>

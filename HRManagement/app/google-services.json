@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "149734772868",
+    "project_id": "humio-fdd0f",
+    "storage_bucket": "humio-fdd0f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:149734772868:android:d49bc7c7047de07912f2d1",
+        "android_client_info": {
+          "package_name": "com.example.hrmanagement"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-7DaYIN7Yhsdr6rHHMhtdx216y4Tr7Uo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

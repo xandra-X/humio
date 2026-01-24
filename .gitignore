@@ -1,0 +1,17 @@
+# Node
+node_modules/
+
+# Env
+.env
+
+# OS / IDE
+.idea/
+.DS_Store
+
+# Secrets
+firebase-service-account.json
+server/service/firebase-service-account.json
+
+# Uploads
+uploads/*
+!uploads/.gitkeep
