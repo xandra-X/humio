@@ -48,11 +48,14 @@ document.addEventListener("DOMContentLoaded", () => {
   =============================== */
   async function fetchEmployees(q = "") {
     const url =
-      "/api/admin/employees" + (q ? "?q=" + encodeURIComponent(q) : "");
+      `${API_BASE}/api/admin/employees` +
+      (q ? "?q=" + encodeURIComponent(q) : "");
     const res = await fetch(url, { headers: authHeaders() });
     if (!res.ok) throw new Error("Failed to load employees");
     return res.json();
   }
+
+
 
   /* ===============================
      RENDER
@@ -135,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const id = btn.closest("tr").dataset.id;
         if (!confirm("Delete this employee?")) return;
 
-        await fetch("/api/admin/employees/" + id, {
+        await fetch(`${API_BASE}/api/admin/employees/` + id, {
           method: "DELETE",
           headers: authHeaders(),
         });
@@ -175,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
       fd.delete("profile_image");
     }
 
-    const res = await fetch("/api/admin/employees/" + id, {
+    const res = await fetch(`${API_BASE}/api/admin/employees/` + id, {
       method: "PUT",
       headers: authHeaders(),
       body: fd,
