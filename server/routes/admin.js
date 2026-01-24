@@ -5,40 +5,48 @@ const pool = require("../db");
 const bcrypt = require("bcryptjs");
 const requireAuth = require("../middleware/requireAuth");
 const multer = require("multer");
-const path = require("path");
+const { bucket } = require("../service/firebase");
 
+// const path = require("path");
+const upload = multer({
+  storage: multer.memoryStorage(), // 🔥 REQUIRED for Firebase
+  limits: { fileSize: 2 * 1024 * 1024 }, // 2MB
+  fileFilter: (req, file, cb) => {
+    if (!file.mimetype.startsWith("image/")) {
+      cb(new Error("Only images allowed"), false);
+    }
+    cb(null, true);
+  },
+});
 // helper
 function handleError(res, err) {
   console.error("Admin route error:", err && err.stack ? err.stack : err);
   return res.status(500).json({ error: "server error" });
 }
 
+
 /**
  * Multer setup for profile image upload
  */
-const profileImageStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, "..", "..", "uploads", "profile_images"));
-  },
-  filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname) || "";
-    const unique = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, unique + ext.toLowerCase());
-  },
-});
+// const profileImageStorage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, path.join(__dirname, "..", "..", "uploads", "profile_images"));
+//   },
+//   filename: (req, file, cb) => {
+//     const ext = path.extname(file.originalname) || "";
+//     const unique = Date.now() + "-" + Math.round(Math.random() * 1e9);
+//     cb(null, unique + ext.toLowerCase());
+//   },
+// });
 
-function imageFileFilter(req, file, cb) {
-  if (!file.mimetype || !file.mimetype.startsWith("image/")) {
-    return cb(new Error("Only image files are allowed"), false);
-  }
-  cb(null, true);
-}
+// function imageFileFilter(req, file, cb) {
+//   if (!file.mimetype || !file.mimetype.startsWith("image/")) {
+//     return cb(new Error("Only image files are allowed"), false);
+//   }
+//   cb(null, true);
+// }
 
-const uploadProfile = multer({
-  storage: profileImageStorage,
-  fileFilter: imageFileFilter,
-  limits: { fileSize: 2 * 1024 * 1024 }, // 2MB
-});
+
 
 /**
  * GET /api/admin/employees
@@ -92,7 +100,7 @@ router.get("/employees", requireAuth(), async (req, res) => {
 router.post(
   "/employees",
   requireAuth(),
-  uploadProfile.single("profile_image"),
+  upload.single("profile_image"),
   async (req, res) => {
     const body = req.body || {};
 
@@ -114,10 +122,24 @@ router.post(
     if (!username || !email) {
       return res.status(400).json({ error: "username and email are required" });
     }
+    let profileImagePath = null;
 
-    const profileImagePath = req.file
-      ? "/uploads/profile_images/" + req.file.filename
-      : null;
+    if (req.file) {
+      const fileName = `profile_images/${Date.now()}_${req.file.originalname}`;
+      const file = bucket.file(fileName);
+
+      await file.save(req.file.buffer, {
+        metadata: { contentType: req.file.mimetype },
+        public: true,
+      });
+
+      profileImagePath = `https://storage.googleapis.com/${bucket.name}/${fileName}`;
+    }
+
+
+    // const profileImagePath = req.file
+    //   ? "/uploads/profile_images/" + req.file.filename
+    //   : null;
 
     const conn = await pool.getConnection();
     try {
@@ -214,7 +236,7 @@ WHERE u.user_id = ?`,
 router.put(
   "/employees/:employee_id",
   requireAuth(),
-  uploadProfile.single("profile_image"),
+  upload.single("profile_image"),
   async (req, res) => {
     const eid = parseInt(req.params.employee_id, 10);
     if (!eid) return res.status(400).json({ error: "invalid employee id" });
@@ -232,9 +254,23 @@ router.put(
       department_id,
     } = req.body || {};
 
-    const profileImagePath = req.file
-      ? "/uploads/profile_images/" + req.file.filename
-      : null;
+    // const profileImagePath = req.file
+    //   ? "/uploads/profile_images/" + req.file.filename
+    //   : null;
+    let profileImagePath = null;
+
+    if (req.file) {
+      const fileName = `profile_images/${Date.now()}_${req.file.originalname}`;
+      const file = bucket.file(fileName);
+
+      await file.save(req.file.buffer, {
+        metadata: { contentType: req.file.mimetype },
+        public: true,
+      });
+
+      profileImagePath = `https://storage.googleapis.com/${bucket.name}/${fileName}`;
+    }
+
 
     const conn = await pool.getConnection();
     try {
@@ -334,7 +370,6 @@ router.put(
           }),
         ]
       );
-
 
       await conn.commit();
       conn.release();
