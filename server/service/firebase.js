@@ -1,15 +1,14 @@
 const admin = require("firebase-admin");
-const path = require("path");
 
 if (!admin.apps.length) {
+  const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+
   admin.initializeApp({
-    credential: admin.credential.cert(
-      require("../config/firebase-service-account.json")
-    ),
+    credential: admin.credential.cert(serviceAccount),
     storageBucket: "humio-profile-images.appspot.com",
   });
 }
 
 const bucket = admin.storage().bucket();
 
-module.exports = { admin, bucket };
+module.exports = { bucket };
