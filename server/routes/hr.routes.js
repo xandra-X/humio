@@ -4,6 +4,16 @@ const pool = require("../db");
 const requireAuth = require("../middleware/requireAuth");
 const admin = require("../service/fcm");
 
+if (admin && row?.fcm_token) {
+  await admin.messaging().send({
+    token: row.fcm_token,
+    notification: {
+      title: "Leave Update",
+      body: `Your leave request was ${status}`,
+    },
+  });
+}
+
 // ---------------------------------------------------
 // GET leave requests (ALL / PENDING / APPROVED / REJECTED)
 // ---------------------------------------------------
