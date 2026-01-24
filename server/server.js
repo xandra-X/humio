@@ -34,7 +34,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 // -------------------- UPLOADS --------------------
-const uploadsRoot = path.join(__dirname, "..", "uploads");
+const uploadsRoot = path.join(process.cwd(), "uploads");
 
 const profileImageDir = path.join(uploadsRoot, "profile_images");
 
