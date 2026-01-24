@@ -34,7 +34,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 // -------------------- STATIC FRONTEND --------------------
-const publicPath = path.join(__dirname, "..", "web", "public");
+const publicPath = path.join(__dirname, "web", "public");
 app.use(express.static(publicPath));
 
 // -------------------- UPLOADS --------------------
