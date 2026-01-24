@@ -12,7 +12,11 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ===============================
      CONFIG
   =============================== */
-  const API_BASE = "http://localhost:3000";
+  const API_BASE =
+    window.location.hostname === "localhost"
+      ? "http://localhost:3000"
+      : "https://humio-production.up.railway.app";
+
 
   function authHeaders() {
     const token = localStorage.getItem("access_token");
