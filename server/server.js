@@ -120,6 +120,7 @@ app.get("/", (req, res) => {
 // Frontend fallback (non-API routes)
 app.get("*", (req, res, next) => {
   if (req.path.startsWith("/api/")) return next();
+  if (req.path.startsWith("/uploads/")) return next();
 
   const filePath = path.join(publicPath, req.path);
   if (fs.existsSync(filePath)) {
