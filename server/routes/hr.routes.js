@@ -4,15 +4,6 @@ const pool = require("../db");
 const requireAuth = require("../middleware/requireAuth");
 const admin = require("../service/fcm");
 
-if (admin && row?.fcm_token) {
-  await admin.messaging().send({
-    token: row.fcm_token,
-    notification: {
-      title: "Leave Update",
-      body: `Your leave request was ${status}`,
-    },
-  });
-}
 
 
 // ---------------------------------------------------
@@ -121,7 +112,7 @@ router.put(
       );
 
       // 3️⃣ Push notification
-      if (row?.fcm_token) {
+      if (admin && row?.fcm_token) {
         await admin.messaging().send({
           token: row.fcm_token,
           notification: {
@@ -130,6 +121,7 @@ router.put(
           },
         });
       }
+
 
       res.json({ success: true });
     } catch (err) {
