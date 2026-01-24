@@ -64,7 +64,8 @@ document.addEventListener("DOMContentLoaded", () => {
     tbody.innerHTML = rows
       .map((e) => {
         // ✅ FIX IMAGE URL
-        const img = e.profile_image ? `${API_BASE}${e.profile_image}` : "";
+        const img = e.profile_image || "";
+
 
         return `
           <tr class="border-t"

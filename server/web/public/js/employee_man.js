@@ -121,9 +121,8 @@ document.addEventListener("DOMContentLoaded", () => {
           const dept = r.department_name || "";
 
           const avatar = r.profile_image
-            ? `<img src="${API_BASE}${escapeHtml(
-                r.profile_image
-              )}" class="inline-block w-8 h-8 rounded-full object-cover mr-2" />`
+            ? `<img src="${escapeHtml(r.profile_image)}"
+ class="inline-block w-8 h-8 rounded-full object-cover mr-2" />`
             : "";
 
           return `<tr class="border-t"

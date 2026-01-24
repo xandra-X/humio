@@ -11,6 +11,7 @@ node_modules/
 # Secrets
 firebase-service-account.json
 server/service/firebase-service-account.json
+server/config/firebase-service-account.json
 
 # Uploads
 uploads/*

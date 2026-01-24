@@ -297,8 +297,7 @@
         rows.forEach(r => {
   const hasImage = r.profile_image && r.profile_image !== "";
   const avatar = hasImage
-    ? `<img
-        src="${API_BASE}${r.profile_image}"
+  ? `<img src="${r.profile_image}"
         class="h-11 w-11 rounded-full object-cover shadow"
       />`
     : `<div
