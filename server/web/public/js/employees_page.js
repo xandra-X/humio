@@ -12,11 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ===============================
      CONFIG
   =============================== */
-  const API_BASE =
-    window.location.hostname === "localhost"
-      ? "http://localhost:3000"
-      : "https://humio-production.up.railway.app";
-
+  const API_BASE = "http://localhost:3000";
 
   function authHeaders() {
     const token = localStorage.getItem("access_token");
@@ -48,14 +44,11 @@ document.addEventListener("DOMContentLoaded", () => {
   =============================== */
   async function fetchEmployees(q = "") {
     const url =
-      `${API_BASE}/api/admin/employees` +
-      (q ? "?q=" + encodeURIComponent(q) : "");
+      "/api/admin/employees" + (q ? "?q=" + encodeURIComponent(q) : "");
     const res = await fetch(url, { headers: authHeaders() });
     if (!res.ok) throw new Error("Failed to load employees");
     return res.json();
   }
-
-
 
   /* ===============================
      RENDER
@@ -64,8 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
     tbody.innerHTML = rows
       .map((e) => {
         // ✅ FIX IMAGE URL
-        const img = e.profile_image || "";
-
+        const img = e.profile_image ? `${API_BASE}${e.profile_image}` : "";
 
         return `
           <tr class="border-t"
@@ -139,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const id = btn.closest("tr").dataset.id;
         if (!confirm("Delete this employee?")) return;
 
-        await fetch(`${API_BASE}/api/admin/employees/` + id, {
+        await fetch("/api/admin/employees/" + id, {
           method: "DELETE",
           headers: authHeaders(),
         });
@@ -179,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
       fd.delete("profile_image");
     }
 
-    const res = await fetch(`${API_BASE}/api/admin/employees/` + id, {
+    const res = await fetch("/api/admin/employees/" + id, {
       method: "PUT",
       headers: authHeaders(),
       body: fd,

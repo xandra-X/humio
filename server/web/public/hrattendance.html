@@ -95,7 +95,7 @@
       </div>
 
       <div class="p-4 border-t border-gray-100">
-        <a href="index.html"
+        <a href="#"
           class="flex items-center space-x-3 p-3 text-red-500 hover:bg-red-50 rounded-lg transition duration-200">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -154,7 +154,7 @@
     <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
 
     <script>
-      const API_BASE = window.location.origin;
+      const API_BASE = "http://localhost:3000";
 
       function authHeaders() {
         const token = localStorage.getItem("access_token");
@@ -297,7 +297,8 @@
         rows.forEach(r => {
   const hasImage = r.profile_image && r.profile_image !== "";
   const avatar = hasImage
-  ? `<img src="${r.profile_image}"
+    ? `<img
+        src="${API_BASE}${r.profile_image}"
         class="h-11 w-11 rounded-full object-cover shadow"
       />`
     : `<div

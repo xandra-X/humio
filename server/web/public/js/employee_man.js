@@ -18,12 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const cancelEditBtn = document.getElementById("cancelEditBtn");
   const editMsg = document.getElementById("editMsg");
 
-  const API_BASE =
-    window.location.hostname === "localhost"
-      ? "http://localhost:3000"
-      : "https://humio-production.up.railway.app";
-
-
   // helper: get Authorization header if token present
   function authHeaders() {
     const token = localStorage.getItem("access_token");
@@ -85,8 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (err) {
       if (err instanceof TypeError) {
         const e = new Error(
-          `Network error or server unreachable. Check backend server or CORS settings.
- (${err.message})`
+          `Network error or server unreachable. Check server at http://localhost:3000 and CORS. (${err.message})`
         );
         e.original = err;
         throw e;
@@ -101,8 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
       tbody.innerHTML =
         '<tr><td colspan="7" class="p-4 text-gray-500">Loading…</td></tr>';
       const url =
-        `${API_BASE}/api/admin/employees` +
-        (q ? "?q=" + encodeURIComponent(q) : "");
+        "/api/admin/employees" + (q ? "?q=" + encodeURIComponent(q) : "");
       const rows = await fetchJson(url, { method: "GET" });
 
       if (!rows || rows.length === 0) {
@@ -121,8 +113,9 @@ document.addEventListener("DOMContentLoaded", () => {
           const dept = r.department_name || "";
 
           const avatar = r.profile_image
-            ? `<img src="${escapeHtml(r.profile_image)}"
- class="inline-block w-8 h-8 rounded-full object-cover mr-2" />`
+            ? `<img src="${escapeHtml(
+                r.profile_image
+              )}" class="inline-block w-8 h-8 rounded-full object-cover mr-2" />`
             : "";
 
           return `<tr class="border-t"
@@ -169,10 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const id = b.getAttribute("data-eid");
           if (!confirm("Delete this employee?")) return;
           try {
-            await fetchJson(`${API_BASE}/api/admin/employees/${id}`, {
-              method: "DELETE",
-            });
-
+            await fetchJson("/api/admin/employees/" + id, { method: "DELETE" });
             await loadEmployees(search.value);
             showMessage(formMsg, "Deleted", true);
           } catch (err) {
@@ -256,7 +246,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const headers = authHeaders();
       delete headers["Content-Type"];
 
-      const res = await fetch(`${API_BASE}/api/admin/employees`, {
+      const res = await fetch("/api/admin/employees", {
         method: "POST",
         headers,
         body: formData,
@@ -343,7 +333,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const headers = authHeaders();
       delete headers["Content-Type"];
 
-      const res = await fetch(`${API_BASE}/api/admin/employees/${eid}`, {
+      const res = await fetch("/api/admin/employees/" + eid, {
         method: "PUT",
         headers,
         body: formData,
@@ -378,7 +368,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("logoutBtn")?.addEventListener("click", () => {
     localStorage.removeItem("access_token");
     localStorage.removeItem("user");
-    window.location.href = "/index.html";
+    window.location.href = "/login.html";
   });
 
   // small debounce
