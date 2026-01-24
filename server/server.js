@@ -33,10 +33,6 @@ if (process.env.NODE_ENV !== "production") {
   });
 }
 
-// -------------------- STATIC FRONTEND --------------------
-const publicPath = path.join(__dirname, "web", "public");
-app.use(express.static(publicPath));
-
 // -------------------- UPLOADS --------------------
 const uploadsRoot = path.join(__dirname, "..", "uploads");
 const profileImageDir = path.join(uploadsRoot, "profile_images");
@@ -110,11 +106,15 @@ optionalRoutes.forEach((r) => {
 app.get("/api/health", (req, res) =>
   res.json({ ok: true, env: process.env.NODE_ENV || "development" })
 );
+// -------------------- STATIC FRONTEND --------------------
+const publicPath = path.join(__dirname, "web", "public");
+app.use(express.static(publicPath));
 
 // Frontend entry
 app.get("/", (req, res) => {
   res.sendFile(path.join(publicPath, "index.html"));
 });
+
 
 // Frontend fallback (non-API routes)
 app.get("*", (req, res, next) => {
